@@ -1,8 +1,10 @@
 import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
+  const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
       username: "",
@@ -14,7 +16,8 @@ const LoginForm = () => {
     }),
     onSubmit: (values) => {
       localStorage.setItem("session", JSON.stringify(values));
-      window.location.href = "/main";
+      navigate("/main");
+      window.location.reload();
     },
   });
 
